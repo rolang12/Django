@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+<ul>
+    {% for article in  articles %}
+        <li>{{article.title}}</li>
+        <li>{{article.body}}</li>
+        <li>{{article.likes}}</li>
+        <li>{{article.likes}}</li>
+        <li>{{article.pub_date}}</li>
+        <li>{{article.public}}</li>
+        <br>
+        <strong> <a href="{% url 'delete-article' id=article.id %} "> Eliminar articulo</a></strong>
+
+        
+        <strong> <a href="{% url 'find_article' id=article.id %} "> Editar articulo</a></strong>
+        
+    </hr>
+    {% empty %}
+
+        <div>No  hay registros</div>
+
+    {% endfor %}
+ 
+</ul>
+
+{% endblock  %}

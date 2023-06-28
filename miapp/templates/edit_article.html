@@ -1,0 +1,43 @@
+<div>
+
+    <h3>Articulo Actual</h3>
+    <div>{{article.title}}</div>
+    <div>{{article.body}}</div>
+    <div>{{article.public}}</div>
+    
+    <h3>Editar datos</h3>
+    <form action=" {% url 'edit-articulo' %} " method="post">
+        {% csrf_token %}
+        <input type="number" name="id" hidden value="{{article.id}}" >
+        <input name="title" type="text" placeholder="title" >
+        <input name="body" type="text" placeholder="Body" >
+        <input name="public" type="text" placeholder="Public" >
+
+        <input type="submit" value="Enviar">
+    </form>
+</div>
+
+<div id="result"></div> <!-- Elemento donde se mostrará el resultado -->
+
+<script>
+    $(document).ready(function() {
+        $('#myForm').submit(function(event) {
+            event.preventDefault(); // Evita que el formulario se envíe de forma tradicional
+
+            var url = $(this).data('url'); // Obtiene la URL del formulario
+            var formData = $(this).serialize(); // Serializa los datos del formulario
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: formData,
+                success: function(response) {
+                    $('#result').html(response); // Actualiza el contenido del elemento con la respuesta del servidor
+                },
+                error: function(xhr, errmsg, err) {
+                    $('#result').html('Error al actualizar el artículo.'); // Muestra un mensaje de error si la petición falla
+                }
+            });
+        });
+    });
+</script>

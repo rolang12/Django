@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title%} {{title}} {% endblock %}
+
+{% block content %}
+
+{% include "ejemplo_include.html" with saludo="Hola con un with" %}
+
+    {{ block.super }}
+    <h2>Hola this is yangos</h2>
+    {% if variable != 'soy un dato de la vista' %}
+        {{variable}}
+    {% endif %}
+
+    <ul>
+        {% for lenguaje in lenguajes  %}
+            <li>{{lenguaje}}</li>
+        {% endfor %}
+    </ul>
+   
+{% endblock %}
+

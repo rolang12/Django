@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css" >
+    <title>
+        {% block title %}
+        {% endblock %}
+    
+    </title>
+</head>
+
+<body>
+    
+    <header>
+        <ul>
+            
+            <li> <a href=" {% url 'HolaPerros' %}">Primero</a></li>
+            <li> <a href=" {% url 'segundo_hola' %}">Segundo</a></li>
+            {% comment %} <li> <a href="{% url 'crear-articulo-url' %}">Crear articulo</a></li> {% endcomment %}
+            <li>Cuarto</li>
+        </ul>
+    </header>
+    <hr>
+
+    <div id="content">
+        {% block content %}
+            <strong>Contenido desde layout</strong>
+        {% endblock %}
+
+
+    </div>
+
+
+    <footer>
+        Pie de pagina
+    </footer>
+
+</body>
+</html>
